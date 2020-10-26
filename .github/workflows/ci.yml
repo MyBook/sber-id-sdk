@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+
+      - name: Download sber id sdk archive
+        run: curl --insecure https://developer.sberbank.ru/doc/files/sberbankid_sdk_android_v~1~1~2~zip --output sber_id_sdk.zip
+
+      - name: Unzip
+        run: unzip sber_id_sdk.zip
+
+      - name: Rename AAR
+        run: mv SberIdSDK.aar sber-id-sdk-1.1.2.${{ github.run_number }}.aar
+
+      - name: Deploy AAR to GitHub Packages
+        run: |
+          curl \
+            --upload-file sber-id-sdk-1.1.2.${{ github.run_number }}.aar \
+            --header 'Authorization: token ${{ github.token }}' \
+            https://maven.pkg.github.com/mybook/sber-id-sdk/sber/sdk/sber-id/sber-id-sdk/1.1.2.${{ github.run_number }}/
+
+      - name: Generate POM
+        run: cat java_src/template.pom | sed -E 's/(<version>)sdk_version(<\/version>)/\11.1.2.${{ github.run_number }}\2/' > sber-id-sdk-1.1.2.${{ github.run_number }}.pom
+
+      - name: Deploy POM to GitHub Packages
+        run: |
+          curl \
+            --upload-file sber-id-sdk-1.1.2.${{ github.run_number }}.pom \
+            --header 'Authorization: token ${{ github.token }}' \
+            https://maven.pkg.github.com/mybook/sber-id-sdk/sber/sdk/sber-id/sber-id-sdk/1.1.2.${{ github.run_number }}/
