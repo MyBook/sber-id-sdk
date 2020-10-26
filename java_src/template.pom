@@ -7,7 +7,7 @@
   <name>Sber id SDK for Android</name>
   <description></description>
 
-  <groupId>sber.sdk</groupId>
+  <groupId>sber.sdk.sber-id</groupId>
   <artifactId>sber-id-sdk</artifactId>
   <version>sdk_version</version>
   <packaging>aar</packaging>
