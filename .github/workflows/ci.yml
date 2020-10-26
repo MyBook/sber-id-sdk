@@ -11,10 +11,6 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v2
 
-      - name: Update certificates sudo
-        run: sudo update-ca-certificates
-        continue-on-error: true
-
       - name: Download sber id sdk archive
         run: curl --insecure https://developer.sberbank.ru/doc/files/sberbankid_sdk_android_v~1~1~2~zip --output sber_id_sdk.zip
 
@@ -22,7 +18,7 @@ jobs:
         run: unzip sber_id_sdk.zip
 
       - name: Rename arr
-        run: cp SberIdSDK.aar sber-id-sdk-1.1.2.${{ github.run_number }}.aar && rm SberIdSDK.aar
+        run: mv SberIdSDK.aar sber-id-sdk-1.1.2.${{ github.run_number }}.aar
 
       - name: Deploy AAR to GitHub Packages
         run: |
