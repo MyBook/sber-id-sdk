@@ -8,9 +8,8 @@
   <description></description>
 
   <groupId>sber.sdk</groupId>
-  <artifactId>sber-id</artifactId>
-  <version>sdk</version>
+  <artifactId>sber-id-sdk</artifactId>
+  <version>sdk_version</version>
   <packaging>aar</packaging>
-  <url>http://github.com/mybook/sber-id-sdk</url>
 
 </project>
