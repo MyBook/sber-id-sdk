@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    
+jobs:
+
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+
+      - name: Update certificates sudo
+        run: sudo update-ca-certificates 
+        continue-on-error: true
+
+      - name: Download sber id sdk archive
+        run: curl --no-check-certificate https://developer.sberbank.ru/doc/files/sberbankid_sdk_android_v~1~1~2~zip 
+
+      - name: Unzip
+        run: unzip path-to-file
+
+      - name: Rename arr
+        run: cp SberIdSDK.aar sber-id-sdk-1.1.2.${{ github.run_number }}.aar && rm SberIdSDK.aar
+      
+      - name: Deploy AAR to GitHub Packages
+        run: curl \
+            --upload-file sber-id-sdk-1.1.2.${{ github.run_number }}.aar \
+            --header 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+            https://maven.pkg.github.com/agrassx/sber-id-sdk/sber/sdk/sber-id/1.1.2.${{ github.run_number }}/
+
