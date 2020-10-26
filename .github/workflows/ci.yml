@@ -17,7 +17,7 @@ jobs:
       - name: Unzip
         run: unzip sber_id_sdk.zip
 
-      - name: Rename arr
+      - name: Rename AAR
         run: mv SberIdSDK.aar sber-id-sdk-1.1.2.${{ github.run_number }}.aar
 
       - name: Deploy AAR to GitHub Packages
