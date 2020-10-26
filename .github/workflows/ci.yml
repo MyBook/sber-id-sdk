@@ -24,7 +24,7 @@ jobs:
         run: |
           curl \
             --upload-file sber-id-sdk-1.1.2.${{ github.run_number }}.aar \
-            --header 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+            --header 'Authorization: token ${{ github.token }}' \
             https://maven.pkg.github.com/mybook/sber-id-sdk/sber/sdk/sber-id/sber-id-sdk/1.1.2.${{ github.run_number }}/
 
       - name: Generate POM
@@ -34,5 +34,5 @@ jobs:
         run: |
           curl \
             --upload-file sber-id-sdk-1.1.2.${{ github.run_number }}.pom \
-            --header 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+            --header 'Authorization: token ${{ github.token }}' \
             https://maven.pkg.github.com/mybook/sber-id-sdk/sber/sdk/sber-id/sber-id-sdk/1.1.2.${{ github.run_number }}/
