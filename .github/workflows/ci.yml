@@ -20,7 +20,7 @@ jobs:
         run: curl --insecure https://developer.sberbank.ru/doc/files/sberbankid_sdk_android_v~1~1~2~zip 
 
       - name: Unzip
-        run: unzip path-to-file
+        run: unzip SberIdSDK.aar
 
       - name: Rename arr
         run: cp SberIdSDK.aar sber-id-sdk-1.1.2.${{ github.run_number }}.aar && rm SberIdSDK.aar
