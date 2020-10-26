@@ -30,5 +30,5 @@ jobs:
             curl \
             --upload-file sber-id-sdk-1.1.2.${{ github.run_number }}.aar \
             --header 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-            https://maven.pkg.github.com/agrassx/sber-id-sdk/sber/sdk/sber-id/1.1.2.${{ github.run_number }}/
+            https://maven.pkg.github.com/mybook/sber-id-sdk/sber/sdk/sber-id/1.1.2.${{ github.run_number }}/
 
