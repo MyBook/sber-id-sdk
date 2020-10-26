@@ -27,7 +27,7 @@ jobs:
       
       - name: Deploy AAR to GitHub Packages
         run: | 
-            curl \
+          curl \
             --upload-file sber-id-sdk-1.1.2.${{ github.run_number }}.aar \
             --header 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
             https://maven.pkg.github.com/mybook/sber-id-sdk/sber/sdk/sber-id/1.1.2.${{ github.run_number }}/
@@ -35,7 +35,7 @@ jobs:
      - name: Generate POM
        run: cat java_src/template.pom | sed -E 's/(<version>)sdk_version(<\/version>)/\11.1.2.${{ github.run_number }}\2/' > sber-id-sdk-1.1.2.${{ github.run_number }}.pom
 
-    - name: Deploy POM to GitHub Packages
+     - name: Deploy POM to GitHub Packages
        run: |
          curl \
            --upload-file sber-id-sdk-1.1.2.${{ github.run_number }}.pom \
